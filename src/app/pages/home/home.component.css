@@ -1,0 +1,156 @@
+body {
+    font-family: "Roboto", sans-serif;
+    color: #949393;
+    margin: 0;
+    overflow: hidden; /* Hide scrollbars */
+    height: 100vh; /* Ensure body takes full viewport height */
+    display: flex;
+    flex-direction: column;
+  }
+  
+  a, button {
+    transition: 0.3s all ease-out;
+  }
+  
+  a {
+    color: #111;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    color: #0043ee;
+  }
+  
+  .layout {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .content {
+    flex: 1; /* Allow content to grow and shrink */
+  }
+  
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .container {
+    width: 100%;
+    max-width: 530px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  #countdown-clock {
+    font-size: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 20px 0;
+  }
+  
+  #countdown-clock .time {
+    background-color: #f5f5f5;
+    color: #000;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 5px;
+    text-align: center;
+  }
+  
+  #countdown-clock .time > span {
+    font-weight: 700;
+  }
+  
+  #countdown-clock .time small {
+    padding-top: 5px;
+    font-size: 12px;
+    text-transform: uppercase;
+    display: block;
+  }
+  
+  .main-content {
+    color: #fff;
+    text-align: center;
+  }
+  
+  .main-content h1 {
+    font-size: 3em;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 0;
+  }
+  
+  .main-content p {
+    font-size: 1.2em;
+    color: #666;
+  }
+  
+  #form .form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0;
+  }
+  
+  input::placeholder {
+    color: #949393;
+  }
+  
+  .form-group input.form-control {
+    width: 100%;
+    max-width: 250px;
+    height: 50px;
+    border-radius: 5px;
+    padding-left: 20px;
+    border: none;
+    background: #f5f5f5;
+    margin-bottom: 10px;
+  }
+  
+  .form-group button.submit-button {
+    padding: 18px 30px;
+    border-radius: 5px;
+    background-color: #0043ee;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+    width: 100%;
+    max-width: 250px;
+  }
+  
+  .form-group button.submit-button:hover {
+    background-color: #222630;
+  }
+  
+  .form-group button.submit-button span {
+    font-weight: 700;
+    padding-left: 5px;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 999px) {
+    .container {
+      padding: 0 20px;
+    }
+  }
+  
+  @media (max-width: 599px) {
+    .container {
+      width: 100%;
+    }
+  }
+  
+  @media (max-width: 540px) {
+    .main-content h1 {
+      font-size: 2.4em;
+    }
+    
+    .form-group input.form-control,
+    .form-group button.submit-button {
+      width: 100%;
+    }
+  }
+  

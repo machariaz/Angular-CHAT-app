@@ -1,0 +1,122 @@
+/* Chat Messages Container */
+.chat-messages {
+    display: flex;
+    flex-direction: column;
+    max-height: 800px;
+    overflow-y: auto; /* Changed from scroll to auto for better behavior */
+}
+
+/* Chat Message Alignment */
+.chat-message-left {
+    display: flex;
+    flex-shrink: 0;
+    margin-right: auto;
+}
+
+/* Padding Utilities */
+.py-3 {
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+}
+
+.px-4 {
+    padding-right: 1.5rem !important;
+    padding-left: 1.5rem !important;
+}
+
+/* Flex Utilities */
+.flex-grow-0 {
+    flex-grow: 0 !important;
+}
+
+/* Border Utilities */
+.border-top {
+    border-top: 1px solid #dee2e6 !important;
+}
+
+/* Profile Card Styles */
+.profile-card {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    padding: 10px;
+}
+
+.avatar {
+    width: 50px; /* Adjust as needed */
+    height: 50px; /* Ensure height matches width for circular avatars */
+    object-fit: cover;
+}
+
+.user-info {
+    margin-left: 10px;
+}
+
+.name {
+    font-weight: bold;
+}
+
+.status {
+    font-size: 0.875rem; /* Adjusted for consistency */
+    color: #2c0202; /* Adjust as needed */
+}
+
+/* Actions Button Styles */
+.actions button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* Message Container */
+.message-container {
+    max-width: 60%;
+}
+
+.message-container p {
+    border-radius: 15px;
+}
+
+/* Input Group Border */
+.card-footer .input-group {
+    border-top: 1px solid #dee2e6;
+}
+/* // */
+
+.bg-custom-sender {
+    background-color: #EBFDFFFF; /* Custom background color for sender */
+    color: black; /* Text color for sender messages */
+}
+.bg-custom-receiver{
+    background-color:  #F8F9FAFF; /* Custom background color for sender */
+    color: black; /* Text color for sender messages */
+}
+
+
+  
+  .input-icons {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+  }
+  
+  .icon {
+    margin-right: 10px;
+    font-size: 1.2em;
+  }
+  
+  input[type=text] {
+    border: none;
+    padding: 10px;
+    flex-grow: 1;
+  }
+  
+  .send-button {
+    background-color: #00BFFF; /* Sample color */
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  

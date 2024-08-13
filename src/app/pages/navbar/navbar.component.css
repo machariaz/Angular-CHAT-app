@@ -1,0 +1,157 @@
+/* layout.component.css */
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+#sidebar {
+    width: 250px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #11101d;
+    padding: 6px 14px;
+}
+
+#sidebar .brand {
+    display: flex;
+    align-items: center;
+    height: 60px;
+}
+
+#sidebar .brand i {
+    font-size: 28px;
+    color: #fff;
+}
+
+#sidebar .brand .text {
+    font-size: 20px;
+    color: #fff;
+    margin-left: 10px;
+}
+
+#sidebar .side-menu {
+    margin-top: 20px;
+}
+
+#sidebar .side-menu li {
+    position: relative;
+    list-style: none;
+    height: 50px;
+}
+
+#sidebar .side-menu li a {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    text-decoration: none;
+    color: #fff;
+    padding: 0 10px;
+}
+
+#sidebar .side-menu li a i {
+    font-size: 24px;
+    margin-right: 10px;
+}
+
+#sidebar .side-menu li a:hover,
+#sidebar .side-menu li a.active {
+    background: #fff;
+    color: #11101d;
+}
+
+#content {
+    margin-left: 250px;
+    padding: 20px;
+    background: #f0f2f5;
+    min-height: 100vh;
+}
+
+#content nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    background:  #11101d;
+    padding: 0 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+#content nav .nav-link {
+    text-decoration: none;
+    color: #e6e6ee;
+}
+
+#content nav .form-input {
+    display: flex;
+    align-items: center;
+}
+
+#content nav .form-input input {
+    border: none;
+    padding: 8px;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+#content nav .form-input .search-btn {
+    background: #11101d;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+}
+
+#content nav .switch-mode {
+    cursor: pointer;
+    background: #ddd;
+    width: 40px;
+    height: 20px;
+    border-radius: 50px;
+    position: relative;
+    margin: 0 20px;
+}
+
+#content nav .switch-mode:before {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 14px;
+    height: 14px;
+    background: #fff;
+    border-radius: 50%;
+    transition: 0.3s;
+}
+
+#content nav .switch-mode.checked:before {
+    left: 23px;
+}
+
+#content nav .notification {
+    position: relative;
+}
+
+#content nav .notification .num {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #ff5c5c;
+    color: #fff;
+    border-radius: 50%;
+    padding: 2px 5px;
+    font-size: 10px;
+}
+
+#content nav .profile img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.main-content {
+    margin-top: 20px;
+}

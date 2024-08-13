@@ -1,0 +1,37 @@
+<!-- <app-navbar></app-navbar>  -->
+<!-- <router-outlet></router-outlet> -->
+
+<!-- <div *ngIf="authService.loader" style="z-index: 1999;position: absolute;top: 0;left: 0;right: 0;bottom: 0;background-color: #f8f9fac7">
+    <img src="../assets/images/loader.svg" alt="Duplicate" width="100px" style="position: fixed;top: 40%;left: 50%;">
+  </div>
+
+
+    <div *ngIf="authService.isAuthenticated">
+        <app-navbar></app-navbar>
+    </div> 
+
+    
+    <div *ngIf="authService.isAuthenticated === false">
+      <router-outlet></router-outlet>
+    </div>  
+     -->
+
+     <!-- Loader -->
+<div *ngIf="authService.loader" style="z-index: 1999; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: #f8f9fac7;">
+  <img src="../assets/img/loader.svg" alt="Loading..." width="100px" style="position: fixed; top: 40%; left: 50%; transform: translate(-50%, -50%);">
+</div>
+
+<!-- Error Message -->
+<div *ngIf="authService.errorMessage" class="error-message">
+  {{ authService.errorMessage }}
+</div>
+
+<!-- Navbar (Authenticated) -->
+<div *ngIf="authService.isAuthenticated">
+  <app-navbar></app-navbar>
+</div>
+
+<!-- Router Outlet (Not Authenticated) -->
+<div *ngIf="!authService.isAuthenticated">
+  <router-outlet></router-outlet>
+</div>

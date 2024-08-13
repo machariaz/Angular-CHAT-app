@@ -1,0 +1,39 @@
+<div class="layout">
+  <div class="content">
+    <div id="body-wrap">
+      <div class="row">
+        <div class="col-8">
+          <div class="container">
+            <div class="main-content">
+              <div class="page-title">
+                <h1>We are launching soon!</h1>
+                <div id="countdown-clock">
+                  <div class="time">
+                    <span class="days"></span>
+                    <small>Days</small>
+                  </div>
+                  <div class="time">
+                    <span class="hours"></span>
+                    <small>Hours</small>
+                  </div>
+                  <div class="time">
+                    <span class="minutes"></span>
+                    <small>Minutes</small>
+                  </div>
+                  <div class="time">
+                    <span class="seconds"></span>
+                    <small>Seconds</small>
+                  </div>
+                </div>
+              </div><!--page-title-->
+              <form id="form">
+                <p>Get notified when we launch our website</p>
+              </form>
+            </div><!--main-content-->
+          </div>
+        </div><!--col-8-->
+      </div><!--row-->
+    </div><!--body-wrap-->
+    <router-outlet></router-outlet> <!-- This is where the child components will be rendered -->
+  </div><!--content-->
+</div><!--layout-->
