@@ -92,7 +92,15 @@
     color: black; /* Text color for sender messages */
 }
 
-
+.bg-custom-chat {
+     /* From https://css.glass */
+background: rgba(238, 208, 206, 0.23);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(6.9px);
+-webkit-backdrop-filter: blur(6.9px);
+border: 1px solid rgba(238, 208, 206, 0.3);
+}
   
   .input-icons {
     display: flex;
@@ -119,4 +127,3 @@
     cursor: pointer;
     border-radius: 5px;
   }
-  

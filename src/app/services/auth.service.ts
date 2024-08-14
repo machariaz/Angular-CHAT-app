@@ -1,131 +1,62 @@
-// import { Injectable, NgZone, inject } from '@angular/core';
-// import { SupabaseClient, createClient } from '@supabase/supabase-js';
-// import { environment } from '../../environments/environment.development';
-// import { Router } from '@angular/router';
-
-// @Injectable({
-//   providedIn: 'root',
-// })
-// export class AuthService {
-//   private supabase!: SupabaseClient;
-
-//   private router = inject(Router);
-//   private _ngZone = inject(NgZone);
-
-
-//   public loader = false
-//   public isAuthenticated = false;
-
-//   constructor() {
-//     this.supabase = createClient(
-//       environment.supabaseUrl,
-//       environment.supabaseKey
-//     );
-
-//     this.supabase.auth.onAuthStateChange((event, session) => {
-//       console.log('event', event);
-//       console.log('session', session);
-
-//       localStorage.setItem('session', JSON.stringify(session?.user));
-
-//       if (session?.user) {
-//         this._ngZone.run(() => {
-//           this.router.navigate(['/home']);
-//         });
-//       }
-//     });
-//   }
-
-//   get isLoggedIn(): boolean {
-//     const user = localStorage.getItem('session') as string;
-
-//     return user === 'undefined' ? false : true;
-//   }
-//   getCurrentUser() {
-//     const user = localStorage.getItem('session');
-//     return user ? JSON.parse(user) : null;
-//   }
-
-
-//   async signInWithGoogle() {
-//     await this.supabase.auth.signInWithOAuth({
-//       provider: 'google',
-//     });
-//   }
-
-//   async signOut() {
-//     await this.supabase.auth.signOut();
-//   }
-// }
+// auth.service.ts
 import { Injectable, NgZone, inject } from '@angular/core';
-import { SupabaseClient, createClient } from '@supabase/supabase-js';
-import { environment } from '../../environments/environment.development';
+import { SupabaseClient } from '@supabase/supabase-js';
+import { SupabaseService } from './supabase.service';
 import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private supabase!: SupabaseClient;
-
+  private supabase: SupabaseClient;
   private router = inject(Router);
   private _ngZone = inject(NgZone);
 
   public loader = false;
   public isAuthenticated = false;
-  public errorMessage: string | null = null;  // Error message state
+  public errorMessage: string | null = null;
 
-  constructor() {
-    this.supabase = createClient(
-      environment.supabaseUrl,
-      environment.supabaseKey
-    );
+  constructor(private supabaseService: SupabaseService) {
+    this.supabase = this.supabaseService.getClient();
 
     this.supabase.auth.onAuthStateChange((event, session) => {
-      this.loader = false; // Stop loader once auth state is determined
+      this.loader = false;
       this.isAuthenticated = !!session?.user;
       localStorage.setItem('session', JSON.stringify(session?.user));
 
       if (this.isAuthenticated) {
-        this._ngZone.run(() => {
-          this.router.navigate(['/home']);
-        });
+        this._ngZone.run(() => this.router.navigate(['/home']));
       } else {
-        this._ngZone.run(() => {
-          this.router.navigate(['/login']);
-        });
+        this._ngZone.run(() => this.router.navigate(['/login']));
       }
     });
   }
 
-
-  
   get isLoggedIn(): boolean {
-    const user = localStorage.getItem('session') as string;
-
-    return user === 'undefined' ? false : true;
+    const user = localStorage.getItem('session');
+    return user !== 'undefined' && user !== null;
   }
-  getCurrentUser() {
+
+  getCurrentUser(): any {
     const user = localStorage.getItem('session');
     return user ? JSON.parse(user) : null;
   }
-  async signInWithGoogle() {
+
+  async signInWithGoogle(): Promise<void> {
     try {
       this.loader = true;
-      this.errorMessage = null; // Clear previous errors
-      const { error } = await this.supabase.auth.signInWithOAuth({
-        provider: 'google',
-      });
+      this.errorMessage = null;
+      const { error } = await this.supabase.auth.signInWithOAuth({ provider: 'google' });
       if (error) throw error;
-    } catch (error) {
-      this.errorMessage = 'Failed to sign in with Google. Please try again.'; // Set error message
-      console.error('Error signing in with Google:', error);
+    } catch (error: any) {
+      this.errorMessage = 'Failed to sign in with Google. Please try again.';
+      console.error('Error signing in with Google:', error.message || error);
     } finally {
       this.loader = false;
     }
   }
 
-  async signOut() {
+  async signOut(): Promise<void> {
     try {
       this.loader = true;
       this.errorMessage = null;
@@ -134,12 +65,10 @@ export class AuthService {
 
       localStorage.removeItem('session');
       this.isAuthenticated = false;
-      this._ngZone.run(() => {
-        this.router.navigate(['/login']);
-      });
-    } catch (error) {
-      this.errorMessage = 'Failed to sign out. Please try again.'; // Set error message
-      console.error('Error signing out:', error);
+      this._ngZone.run(() => this.router.navigate(['/login']));
+    } catch (error: any) {
+      this.errorMessage = 'Failed to sign out. Please try again.';
+      console.error('Error signing out:', error.message || error);
     } finally {
       this.loader = false;
     }

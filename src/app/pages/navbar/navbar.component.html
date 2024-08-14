@@ -70,13 +70,14 @@
             </form>
             <input type="checkbox" id="switch-mode" hidden>
             <label for="switch-mode" class="switch-mode"></label>
-            <a href="#" class="notification">
-                <i class='bx bxs-bell'></i>
-                <span class="num">8</span>
-            </a>
+            
+            <p class="fw-bold mb-0 " style="color: white;">{{ member.full_name }}</p>
+
             <a href="#" class="profile">
-                <img src="assets/img/people.png">
+                <img [src]="member.avatar_url" alt="User Avatar">
+               
             </a>
+            
         </nav>
         <!-- NAVBAR -->
 
