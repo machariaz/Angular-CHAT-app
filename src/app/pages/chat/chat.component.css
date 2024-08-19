@@ -1,129 +1,97 @@
-/* Chat Messages Container */
-.chat-messages {
-    display: flex;
-    flex-direction: column;
-    max-height: 800px;
-    overflow-y: auto; /* Changed from scroll to auto for better behavior */
+
+
+.container-fluid {
+  display: flex;
+  flex-direction: column; /* Stack children vertically */
+  min-height: 100vh; /* Ensure the container covers at least the full viewport height */
 }
 
-/* Chat Message Alignment */
-.chat-message-left {
-    display: flex;
-    flex-shrink: 0;
-    margin-right: auto;
-}
 
-/* Padding Utilities */
-.py-3 {
-    padding-top: 1rem !important;
-    padding-bottom: 1rem !important;
-}
-
-.px-4 {
-    padding-right: 1.5rem !important;
-    padding-left: 1.5rem !important;
-}
-
-/* Flex Utilities */
-.flex-grow-0 {
-    flex-grow: 0 !important;
-}
-
-/* Border Utilities */
-.border-top {
-    border-top: 1px solid #dee2e6 !important;
-}
-
-/* Profile Card Styles */
-.profile-card {
-    display: flex;
-    align-items: center;
-    background-color: #fff;
-    padding: 10px;
-}
-
-.avatar {
-    width: 50px; /* Adjust as needed */
-    height: 50px; /* Ensure height matches width for circular avatars */
-    object-fit: cover;
-}
-
-.user-info {
-    margin-left: 10px;
-}
-
-.name {
-    font-weight: bold;
-}
-
-.status {
-    font-size: 0.875rem; /* Adjusted for consistency */
-    color: #2c0202; /* Adjust as needed */
-}
-
-/* Actions Button Styles */
-.actions button {
-    background: none;
-    border: none;
-    cursor: pointer;
-}
-
-/* Message Container */
 .message-container {
-    max-width: 60%;
+  display: flex;
+  align-items: center; /* This ensures vertical alignment of items in the container */
+  margin-bottom: 0.2rem; /* Space between messages */
 }
 
-.message-container p {
-    border-radius: 15px;
+
+
+.avatar-container img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
 }
 
-/* Input Group Border */
-.card-footer .input-group {
-    border-top: 1px solid #dee2e6;
-}
-/* // */
-
-.bg-custom-sender {
-    background-color: #EBFDFFFF; /* Custom background color for sender */
-    color: black; /* Text color for sender messages */
-}
-.bg-custom-receiver{
-    background-color:  #F8F9FAFF; /* Custom background color for sender */
-    color: black; /* Text color for sender messages */
+/* Adjustments here */
+.message-content-container {
+  display: flex; /* Ensures the content inside this container is laid out in a row */
+  flex-direction: row; /* Changes direction to row, default is column */
+  max-width: 70%; /* Ensure the message bubble doesn't take up too much space */
+  align-items: center; /* Aligns items vertically in the middle */
 }
 
-.bg-custom-chat {
-     /* From https://css.glass */
-background: rgba(238, 208, 206, 0.23);
-border-radius: 16px;
-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-backdrop-filter: blur(6.9px);
--webkit-backdrop-filter: blur(6.9px);
-border: 1px solid rgba(238, 208, 206, 0.3);
+
+.message-meta {
+  font-size: 0.75rem;
+  color: #4b4949;
+  margin-top: 0px; /* No space between the text and timestamp */
+  text-align: right;
+  display: block; /* Ensures that the timestamp stays on the next line */
+  margin-left: auto; /* Aligns the timestamp to the right */
 }
-  
-  .input-icons {
-    display: flex;
-    align-items: center;
-    flex-grow: 1;
-  }
-  
-  .icon {
-    margin-right: 10px;
-    font-size: 1.2em;
-  }
-  
-  input[type=text] {
-    border: none;
-    padding: 10px;
-    flex-grow: 1;
-  }
-  
-  .send-button {
-    background-color: #00BFFF; /* Sample color */
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    border-radius: 5px;
-  }
+
+.message-bubble {
+  background: #f1f1f1;
+  border-radius: 7px; /* Slightly tighter rounded corners like WhatsApp */
+  padding: 6px 12px; /* Reduced padding for a more compact look */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  font-size: 0.875rem; /* Slightly smaller text to match WhatsApp */
+  line-height: 1.2; /* Compact line spacing */
+}
+
+
+.message-container.justify-content-end .message-bubble {
+  background: #d9fdd3; /* Light green for sent messages */
+  color: #000;
+}
+
+
+
+
+.message-card-body {
+  height: calc(100vh - 200px);
+  overflow-y: auto;
+  padding: 1rem;
+  background: #feffff;
+}
+
+.input-group-text {
+  cursor: pointer;
+}
+
+.alert {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 300px;
+}
+.scroller::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  background-color: #F5F5F5;
+  border-radius: 10px;
+}
+
+.scroller::-webkit-scrollbar {
+  width: 8px; /* Thin scrollbar width */
+  background-color: #F5F5F5;
+}
+
+.scroller::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #FFF;
+  background-image: -webkit-gradient(linear,
+                                     40% 0%,
+                                     75% 84%,
+                                     from(#4D9C41),
+                                     to(#19911D),
+                                     color-stop(.6, #54DE5D));
+}

@@ -1,0 +1,31 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-4"> <!-- Reduced width -->
+      <div class="card border-primary">
+        <div class="card-header bg-primary text-white text-center">
+          <h1 class="card-title">Sign Up</h1>
+        </div>
+        <div class="card-body">
+          <form (ngSubmit)="handleSignUp()" name="signupForm">
+            
+            <div class="form-group mb-3">
+              <label for="email">Email address</label>
+              <input type="email" name="email" class="form-control" id="email" [(ngModel)]="email" placeholder="Enter email" required>
+            </div>
+            <div class="form-group mb-3 position-relative">
+              <label for="password">Password</label>
+              <input type="password" name="password" id="password" class="form-control" [(ngModel)]="password" placeholder="Enter Password" required>
+              <span class="position-absolute top-50 end-0 translate-middle-y pe-3" (click)="togglePasswordVisibility()" style="cursor: pointer;">
+                <i [class]="showPassword ? 'bi bi-eye-slash' : 'bi bi-eye'"></i>
+              </span>
+            </div>
+            <div *ngIf="errorMessage" class="alert alert-danger mb-3">{{ errorMessage }}</div>
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

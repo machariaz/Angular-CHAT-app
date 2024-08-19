@@ -1,6 +1,6 @@
 body {
     font-family: "Roboto", sans-serif;
-    color: #949393;
+    color: #d17e7e;
     margin: 0;
     overflow: hidden; /* Hide scrollbars */
     height: 100vh; /* Ensure body takes full viewport height */
@@ -13,10 +13,13 @@ body {
   }
   
   a {
-    color: #111;
+    color: #b9b9b9;
     text-decoration: none;
   }
-  
+  h1 {
+    color: white; /* Set the text color to white */
+  }
+
   a:hover {
     color: #0043ee;
   }
@@ -40,7 +43,7 @@ body {
     width: 100%;
     max-width: 530px;
     margin: 0 auto;
-    padding: 20px;
+    
   }
   
   #countdown-clock {
@@ -79,13 +82,13 @@ body {
   .main-content h1 {
     font-size: 3em;
     font-weight: 700;
-    color: #000;
+    color: #fffafa;
     margin-bottom: 0;
   }
   
   .main-content p {
     font-size: 1.2em;
-    color: #666;
+    color: #fcf8f8;
   }
   
   #form .form-group {

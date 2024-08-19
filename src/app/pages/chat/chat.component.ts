@@ -64,6 +64,8 @@ export class ChatComponent {
     try {
       // Fetch the list of users from the service
       this.users = await this.chat_service.getUsers();
+      
+      console.log(this.users);
   
       // Ensure currentUser is defined before filtering
       if (this.currentUser && this.currentUser.id) {

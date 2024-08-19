@@ -69,29 +69,32 @@ export class ChatService {
     }
   }
 
+  
   // List chat messages between the current user and another user
-  async listChat(receiverId: string): Promise<Ichat[]> {
-    try {
-      const user = await this.getCurrentUser();
+async listChat(receiverId: string): Promise<Ichat[]> {
+  try {
+    const user = await this.getCurrentUser();
 
-      const { data, error } = await this.supabase
-        .from('chat')
-        .select('*')
-        .or(`(sender.eq.${user.id},receiver.eq.${user.id})`)
-        .or(`(sender.eq.${receiverId},receiver.eq.${receiverId})`)
-        .order('created_at', { ascending: true });
+    const { data, error } = await this.supabase
+      .from('chat')
+      .select('*')
+      .or(
+        `and(sender.eq.${user.id},receiver.eq.${receiverId}),and(sender.eq.${receiverId},receiver.eq.${user.id})`
+      )
+      .order('created_at', { ascending: true });
 
-      if (error) {
-        console.error('Error fetching chat messages:', error.message);
-        return []; // Return an empty array if there's an error
-      }
-
-      return data;
-    } catch (error) {
-      console.error('Unexpected error in listChat:', (error as Error).message);
-      return []; // Return an empty array if there's an unexpected error
+    if (error) {
+      console.error('Error fetching chat messages:', error.message);
+      return []; // Return an empty array if there's an error
     }
+
+    return data;
+  } catch (error) {
+    console.error('Unexpected error in listChat:', (error as Error).message);
+    return []; // Return an empty array if there's an unexpected error
   }
+}
+
 
   // Delete a chat message
   async deleteChat(id: string): Promise<void> {
@@ -122,9 +125,12 @@ export class ChatService {
         throw error;
       }
       return data;
+      
     } catch (error) {
       console.error('Unexpected error in getUsers:', (error as Error).message);
       throw error;
     }
   }
 }
+//
+

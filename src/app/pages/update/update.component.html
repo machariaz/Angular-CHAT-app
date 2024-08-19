@@ -1,0 +1,16 @@
+<div>
+    <h2>Update Your Profile</h2>
+    <form (ngSubmit)="updateProfile()">
+      <div>
+        <label for="fullName">Full Name:</label>
+        <input id="fullName" [(ngModel)]="fullName" name="fullName" required />
+      </div>
+      <div>
+        <label for="avatarUrl">Avatar URL:</label>
+        <input id="avatarUrl" [(ngModel)]="avatarUrl" name="avatarUrl" />
+      </div>
+      <button type="submit">Update Profile</button>
+      <div *ngIf="errorMessage">{{ errorMessage }}</div>
+    </form>
+  </div>
+  

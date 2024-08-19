@@ -1,21 +1,31 @@
 
-<div class="container-fluid mt-4" style="margin-top: 56px;">
+  
+
+<div class="container-fluid mt-4" style="margin-top: 6px; ">
   <div class="row justify-content-center">
     <!-- Main Card -->
-    <div class="card col-12 p-0">
+    <div class="card col-12 p-0" style="height: 100%;"> <!-- Adjust the height value as needed -->
+
       <div class="row g-0">
         <!-- Friends Column -->
         <div class="col-md-4">
           <div class="card h-100">
-            <div class="card-header d-flex justify-content-between align-items-center">
+            <div class="card-header d-flex justify-content-between align-items-center ">
               <h3>Friends</h3>
-              <div>
-                <i class='bx bx-search'></i>
-                <i class='bx bx-filter'></i>
-              </div>
+              
+              
             </div>
             <ul class="list-group list-group-flush">
-              <li *ngFor="let member of users" 
+              <!-- WhatsApp-like Search Field -->
+              <div style="display: flex; align-items: center; background-color: #c0eaf7; padding: 10px; border-radius: 20px; width: 100%; max-width: 400px;">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#777">
+                  <path d="M0 0h24v24H0z" fill="none"/>
+                  <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                </svg>
+                <input type="text" id="search" name="search" placeholder="Search or start new chat" style="border: none; outline: none; background: none; padding-left: 10px; font-size: 16px; width: 100%;">
+              </div>
+
+              <li *ngFor="let member of users"
                   class="list-group-item d-flex justify-content-between align-items-center"
                   (click)="onSelectMember(member)">
                 <div class="d-flex align-items-center w-100" style="cursor: pointer;">
@@ -45,19 +55,39 @@
                 <h5 class="mb-0">{{ selectedMember.full_name }}</h5>
                 <p class="small text-muted">Last seen: {{ selectedMember.last_seen }}</p>
               </div>
+               <!-- Actions -->
+               <div class="d-flex align-items-center">
+                <button type="button" class="btn btn-link text-primary" aria-label="Call">
+                    <i class="fas fa-phone"></i>
+                </button>
+                <button type="button" class="btn btn-link text-primary" aria-label="Video Call">
+                    <i class="fas fa-video"></i>
+                </button>
+                <button type="button" class="btn btn-link text-primary" aria-label="More Options">
+                    <i class="fas fa-ellipsis-h"></i>
+                </button>
+              </div>
             </div>
 
             <!-- Chat Messages -->
-            <div class="card-body" style="height: calc(100vh - 200px); overflow-y: auto;">
-              <div *ngFor="let msg of (chats$ | async)" class="d-flex mb-3"
+            <div class="card-body message-card-body scroller">
+              <div *ngFor="let msg of (chats$ | async)" class="message-container d-flex mb-3"
                    [ngClass]="{
                      'justify-content-start': msg?.sender !== currentUser?.id,
                      'justify-content-end': msg?.sender === currentUser?.id
                    }">
-                <div class="message-content">
-                  <p>{{ msg.text }}</p>
+                <div class="message-content-container d-flex flex-column">
+                  
+                  <!-- Message Bubble -->
+                  <div class="message-bubble">
+                    <p>{{ msg.text }}</p>
+                    <div class="message-meta">
+                      <span class="message-time">{{ msg.created_at | date: 'M/d/yy, h:mm a' }}</span>
+                    </div>
+                  </div>
                 </div>
               </div>
+              
               <div *ngIf="!(chats$ | async)?.length" class="text-center">
                 No chats available. Start a conversation!
               </div>
@@ -91,3 +121,4 @@
 <div *ngIf="errorMessage" class="alert alert-danger mt-4">
   {{ errorMessage }}
 </div>
+

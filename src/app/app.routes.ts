@@ -20,9 +20,24 @@ export const routes: Routes = [
       import('./pages/login/login.component').then((com) => com.LoginComponent),
   },
   {
+    path: 'register',
+    loadComponent: () =>
+      import('./pages/register/register.component').then((com) => com.RegisterComponent),
+  },
+  {
+    path: 'update',
+    loadComponent: () =>
+      import('./pages/update/update.component').then((com) => com.UpdateComponent),
+  },
+  {
     path: '',
     loadComponent: () =>
       import('./pages/login/login.component').then((com) => com.LoginComponent),
+  },
+  {
+    path: '**',
+    redirectTo: '/login', // Redirect to login or a 404 page
+    pathMatch: 'full',
   },
 ];
 
