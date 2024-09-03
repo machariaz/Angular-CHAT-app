@@ -1,3 +1,5 @@
+
+
 <div class="container mt-5">
   <div class="row justify-content-center">
     <div class="col-md-4"> <!-- Reduced width -->
@@ -6,22 +8,32 @@
           <h1 class="card-title">Sign Up</h1>
         </div>
         <div class="card-body">
-          <form (ngSubmit)="handleSignUp()" name="signupForm">
+          <form [formGroup]="signUpForm" (ngSubmit)="handleSignUp()">
             
             <div class="form-group mb-3">
               <label for="email">Email address</label>
-              <input type="email" name="email" class="form-control" id="email" [(ngModel)]="email" placeholder="Enter email" required>
+              <input type="email" formControlName="email" class="form-control" id="email" placeholder="Enter email">
+              <div *ngIf="signUpForm.get('email')?.invalid && signUpForm.get('email')?.touched" class="text-danger">
+                <small *ngIf="signUpForm.get('email')?.errors?.['required']">Email is required.</small>
+                <small *ngIf="signUpForm.get('email')?.errors?.['email']">Invalid email address.</small>
+              </div>
             </div>
+
             <div class="form-group mb-3 position-relative">
               <label for="password">Password</label>
-              <input type="password" name="password" id="password" class="form-control" [(ngModel)]="password" placeholder="Enter Password" required>
+              <input [type]="showPassword ? 'text' : 'password'" formControlName="password" id="password" class="form-control" placeholder="Enter Password">
               <span class="position-absolute top-50 end-0 translate-middle-y pe-3" (click)="togglePasswordVisibility()" style="cursor: pointer;">
                 <i [class]="showPassword ? 'bi bi-eye-slash' : 'bi bi-eye'"></i>
               </span>
+              <div *ngIf="signUpForm.get('password')?.invalid && signUpForm.get('password')?.touched" class="text-danger">
+                <small *ngIf="signUpForm.get('password')?.errors?.['required']">Password is required.</small>
+                <small *ngIf="signUpForm.get('password')?.errors?.['minlength']">Password must be at least 6 characters long.</small>
+              </div>
             </div>
+
             <div *ngIf="errorMessage" class="alert alert-danger mb-3">{{ errorMessage }}</div>
             <div class="text-center">
-              <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+              <button type="submit" class="btn btn-primary btn-block" [disabled]="signUpForm.invalid">Sign Up</button>
             </div>
           </form>
         </div>

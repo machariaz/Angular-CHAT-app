@@ -1,16 +1,20 @@
-<div>
+<div class="overlay" *ngIf="isVisible">
+  <div class="floating-card card">
     <h2>Update Your Profile</h2>
-    <form (ngSubmit)="updateProfile()">
-      <div>
-        <label for="fullName">Full Name:</label>
-        <input id="fullName" [(ngModel)]="fullName" name="fullName" required />
-      </div>
-      <div>
-        <label for="avatarUrl">Avatar URL:</label>
-        <input id="avatarUrl" [(ngModel)]="avatarUrl" name="avatarUrl" />
-      </div>
-      <button type="submit">Update Profile</button>
-      <div *ngIf="errorMessage">{{ errorMessage }}</div>
-    </form>
+    <div class="form-card">
+      <form (ngSubmit)="updateProfile()">
+        <div>
+          <label for="fullName">Full Name:</label>
+          <input id="fullName" [(ngModel)]="fullName" name="fullName" required />
+          <div *ngIf="!fullName && errorMessage" class="errorMessage">Full name is required</div>
+        </div>
+        <div>
+          <label for="avatarUrl">Select Avatar: only .jpeg and .png allowed (optional)</label>
+          <input type="file" (change)="onFileSelected($event)" />
+        </div>
+        <button type="submit">Update Profile</button>
+        <div *ngIf="errorMessage" class="errorMessage">{{ errorMessage }}</div>
+      </form>
+    </div>
   </div>
-  
+</div>

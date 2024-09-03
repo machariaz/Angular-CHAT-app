@@ -1,1 +1,31 @@
-/* You can add global styles to this file, and also import other style files */
+/* Base styles */
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Light theme styles */
+:root {
+  --background-color: #ffffff;
+  --text-color: #000000;
+  --button-background: #007bff;
+  --button-text: #ffffff;
+  --card-background: #f8f9fa;
+  --card-border: #ccc;
+}
+
+/* Dark theme styles */
+.dark-theme {
+  --background-color: #11101d;
+  --text-color: #e0e0e0;
+  --button-background: #007bff;
+  --button-text: #ffffff;
+  --card-background: #2c2c2c;
+  --card-border: #444;
+}
+
+.card {
+  background-color: var(--card-background);
+  border: 1px solid var(--card-border);
+}

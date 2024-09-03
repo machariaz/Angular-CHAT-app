@@ -167,3 +167,53 @@ body {
     height: max-content;
     box-sizing: border-box; /* Include padding and border in the element's width and height */
 }
+.logout-button {
+    background: none;
+    border: none;
+    color: #007bff;
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 0;
+  }
+  
+  .logout-button:hover {
+    color: #0056b3;
+    text-decoration: none;
+  }
+  /* Styles for the switch */
+.switch-mode {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 50px;
+    height: 25px;
+    background-color: #ccc;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .switch-mode::before {
+    content: '';
+    position: absolute;
+    width: 23px;
+    height: 23px;
+    border-radius: 50%;
+    background-color: #fff;
+    transition: transform 0.3s;
+  }
+  
+  #switch-mode:checked + .switch-mode {
+    background-color: #007bff;
+  }
+  
+  #switch-mode:checked + .switch-mode::before {
+    transform: translateX(25px);
+  }
+  
+  /* Additional styling to ensure switch is visible */
+  body {
+    padding-top: 40px;
+  }
+  

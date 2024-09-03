@@ -15,7 +15,7 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a [routerLink]="['/auction']">
                     <i class='bx bxs-shopping-bag-alt'></i>
                     <span class="text">My Store</span>
                 </a>
@@ -41,16 +41,16 @@
         </ul>
         <ul class="side-menu">
             <li>
-                <a href="#">
+                <a  [routerLink]="['/update']">
                     <i class='bx bxs-cog'></i>
                     <span class="text">Settings</span>
                 </a>
             </li>
             <li>
-                <a class="dropdown-item" (click)="logout()">
-                    <i class="ti-power-off text-primary"></i>
+                <button (click)="logout()" class="logout-button">
                     Logout
-                  </a>
+                  </button>
+                  
             </li>
         </ul>
     </section>
@@ -64,12 +64,20 @@
             <a href="#" class="nav-link">Categories</a>
             <form action="#">
                 <div class="form-input">
-                    <input type="search" placeholder="Search...">
+                    <input type="search" id ="search"placeholder="Search...">
                     <button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
                 </div>
             </form>
+           
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="themeSwitch" (click)="themeService.toggleTheme()">
+                <label class="form-check-label" for="themeSwitch">Dark Mode</label>
+            </div>
+            <!-- Theme switch checkbox and label -->
             <!-- <input type="checkbox" id="switch-mode" hidden>
-            <label for="switch-mode" class="switch-mode"></label> -->
+            <label for="switch-mode" class="switch-mode" (click)="themeService.toggleTheme()"></label> -->
+
+          
             
             <p class="fw-bold mb-0 " style="color: white;">{{ member.full_name }}</p>
 

@@ -1,0 +1,100 @@
+<body class="bg-dark br-3">
+  <div class="container py-5">
+      <h3 class="mb-4 text-light">Bid area</h3>
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+          Create a bid
+      </button>
+      <!-- Modal -->
+      <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+              <div class="modal-content bg-dark text-light">
+                  <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="staticBackdropLabel">Place your bid</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                      <div class="row">
+                          <div class="col-lg-4 mb-4">
+                              <div class="bg-secondary p-4 rounded shadow-sm">
+                                  <div class="mb-4">
+                                      <h2 class="h5">Your Sell Method</h2>
+                                      <div class="form-check">
+                                          <input class="form-check-input" type="radio" name="sell-method" value="fixed" id="fixed-method">
+                                          <label class="form-check-label" for="fixed-method">
+                                              Fixed
+                                          </label>
+                                      </div>
+                                      <div class="form-check">
+                                          <input class="form-check-input" type="radio" name="sell-method" value="bid" id="bid-method">
+                                          <label class="form-check-label" for="bid-method">
+                                              Bid
+                                          </label>
+                                      </div>
+                                  </div>
+                                  <div class="mb-4">
+                                      <h2 class="h5">Price</h2>
+                                      <input type="text" class="form-control" placeholder="Enter price">
+                                  </div>
+                                  <div class="mb-4">
+                                      <h2 class="h5">Schedule for Future Listing</h2>
+                                      <div class="form-check form-switch">
+                                          <input class="form-check-input" type="checkbox" id="schedule-switch">
+                                          <label class="form-check-label" for="schedule-switch"></label>
+                                      </div>
+                                  </div>
+                                  <div class="mb-4">
+                                      <h2 class="h5">T&C</h2>
+                                      <textarea class="form-control" placeholder="Enter terms and conditions"></textarea>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="col-lg-4">
+                              <div class="bg-secondary p-4 rounded shadow-sm">
+                                  <h2 class="h5">Summary</h2>
+                                  <p>Price: $11.98</p>
+                                  <img src="item-preview.jpg" alt="Item Preview" class="img-fluid mb-3">
+                                  <button class="btn btn-success w-100">Post Your Listing</button>
+                                  <a href="#" class="d-block mt-3 text-primary">Make an Offer Setting</a>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Understood</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="auction-container">
+          <div class="auction-header">
+              <h1 class="text-light">Auction</h1>
+              <div class="timer">
+                  <h2 class="text-danger">Time Left: {{ formattedTime }}</h2>
+              </div>
+          </div>
+          <div class="items-grid">
+              <div class="item-card" *ngFor="let item of items">
+                  <img [src]="item.image" alt="{{ item.name }}" class="item-image" />
+                  <div class="item-details">
+                      <h3>{{ item.name }}</h3>
+                      <p>{{ item.description }}</p>
+                      <input
+                          type="number"
+                          placeholder="Enter your bid"
+                          [(ngModel)]="item.currentBid"
+                          class="bid-input"
+                          [disabled]="timeLeft <= 0"
+                      />
+                      <button (click)="placeBid(item)" class="bid-button" [disabled]="timeLeft <= 0">Place Bid</button>
+                  </div>
+              </div>
+          </div>
+          <div class="winning-bid" *ngIf="winningItem">
+              <h2>Winning Bid</h2>
+              <p>{{ winningItem.name }} - ${{ winningItem.highestBid }}</p>
+          </div>
+      </div>
+  </div>
+</body>

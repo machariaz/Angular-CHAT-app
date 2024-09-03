@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './pages/navbar/navbar.component';
 import { AuthService } from './services/auth.service';
+import { ThemeService } from './services/theme.service';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,7 @@ import { AuthService } from './services/auth.service';
 export class AppComponent {
   title = 'ng-chat';
 
-  constructor( public authService: AuthService ){
+  constructor( public authService: AuthService,public themeService: ThemeService ){
     
 
    

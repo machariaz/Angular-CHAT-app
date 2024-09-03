@@ -28,6 +28,7 @@ import { SupabaseService } from '../../services/supabase.service'; // Import Sup
 import { AuthService } from '../../services/auth.service';
 import { User } from '@supabase/supabase-js';
 import { CommonModule } from '@angular/common';
+import { ThemeService } from '../../services/theme.service';
 
 @Component({
   selector: 'app-navbar',
@@ -42,6 +43,7 @@ export class NavbarComponent implements OnInit {
   constructor(
     private router: Router,
     private authService: AuthService,
+    public themeService: ThemeService,
     private supabaseService: SupabaseService // Inject SupabaseService
   ) {}
 

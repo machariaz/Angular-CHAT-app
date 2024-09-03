@@ -11,7 +11,7 @@ export class AuthService {
   private router = inject(Router);
   private _ngZone = inject(NgZone);
 
-  public loader = false; // Add this line
+  public loader = false;
   public isAuthenticated = false;
   public errorMessage: string | null = null;
 
@@ -64,9 +64,7 @@ export class AuthService {
       const { data, error } = await this.supabase.auth.signInWithPassword({ email, password });
 
       if (error) {
-        this.errorMessage = error.message === 'Invalid login credentials'
-          ? 'Invalid email or password. Please try again.'
-          : 'An error occurred during login. Please try again.';
+        this.errorMessage = error.message ;
         throw error;
       }
 
@@ -79,9 +77,6 @@ export class AuthService {
     }
   }
 
-
-
-  
   async signUpWithEmail(email: string, password: string): Promise<any> {
     const { data, error } = await this.supabase.auth.signUp({ 
       email,
@@ -97,9 +92,10 @@ export class AuthService {
     this.router.navigate(['/update']);
     return data.user;
   }
+  
   async updateProfile(userId: string, fullName: string, avatarUrl: string): Promise<void> {
     const { error } = await this.supabase
-      .from('users')  // Use 'users' table instead of 'profiles'
+      .from('users')
       .update({ full_name: fullName, avatar_url: avatarUrl })
       .eq('id', userId);
   
@@ -107,9 +103,7 @@ export class AuthService {
       throw new Error(`Profile Update Error: ${error.message}`);
     }
   }
-  
 
-  
   async signOut(): Promise<void> {
     try {
       this.loader = true;
@@ -125,6 +119,76 @@ export class AuthService {
       console.error('Error signing out:', error.message || error);
     } finally {
       this.loader = false;
+    }
+  }
+
+  // Auction Methods
+
+  // Create a new auction item
+  async createAuctionItem(name: string, description: string, image: string): Promise<any> {
+    const { data, error } = await this.supabase
+      .from('auction_items')
+      .insert([{ name, description, image, current_bid: 0, highest_bid: 0, highest_bidder: '' }]);
+
+    if (error) {
+      this.errorMessage = error.message;
+      throw new Error(`Create Auction Item Error: ${error.message}`);
+    }
+
+    return data;
+  }
+
+  // Update an existing auction item
+  async updateAuctionItem(id: string, currentBid: number, highestBid: number, highestBidder: string): Promise<void> {
+    const { error } = await this.supabase
+      .from('auction_items')
+      .update({ current_bid: currentBid, highest_bid: highestBid, highest_bidder: highestBidder })
+      .eq('id', id);
+
+    if (error) {
+      this.errorMessage = error.message;
+      throw new Error(`Update Auction Item Error: ${error.message}`);
+    }
+  }
+
+  // Fetch auction items
+  async getAuctionItems(): Promise<any[]> {
+    const { data, error } = await this.supabase
+      .from('auction_items')
+      .select('*');
+
+    if (error) {
+      this.errorMessage = error.message;
+      throw new Error(`Fetch Auction Items Error: ${error.message}`);
+    }
+
+    return data;
+  }
+
+  // Fetch bids for a specific auction item
+  async getBids(itemId: string): Promise<any[]> {
+    const { data, error } = await this.supabase
+      .from('bids')
+      .select('*')
+      .eq('item_id', itemId);
+
+    if (error) {
+      this.errorMessage = error.message;
+      throw new Error(`Fetch Bids Error: ${error.message}`);
+    }
+
+    return data;
+  }
+
+  // Place a new bid
+  async placeBid(itemId: string, bidAmount: number, bidderId: string): Promise<void> {
+    const { error } = await this.supabase
+      .from('bids')
+      .insert([{ item_id: itemId, bid_amount: bidAmount, bidder: bidderId }]);
+
+    if (error) {
+      this.errorMessage = error.message;
+      throw new Error(`Place Bid Error: ${error.message}`);
     }
   }
 }

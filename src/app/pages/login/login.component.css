@@ -17,10 +17,11 @@ body {
 		flex-direction: column;
 		width: 100%;
 		pointer-events: auto;
-		background-color: #fff;
+		
 		background-clip: padding-box;
 		border: 1px solid rgba(0,0,0,.2);
-		border-radius: 1.1rem;
+		border-radius: 3.1rem;
+    border-color: #4f60f7;
 		outline: 0;
 		max-width: 500px;
 		 }

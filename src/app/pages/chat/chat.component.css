@@ -13,6 +13,9 @@
   margin-bottom: 0.2rem; /* Space between messages */
 }
 
+.actions-right {
+  margin-left: auto;
+}
 
 
 .avatar-container img {

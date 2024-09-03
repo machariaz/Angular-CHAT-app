@@ -79,7 +79,10 @@ export class ChatComponent {
       this.errorMessage = 'Failed to load users.';
     }
   }
-  
+  formatTime(time: string): string {
+    // Split time and only return hours and minutes
+    return time ? time.slice(0, 5) : '';
+  }
 
   onSearch(event: any): void {
     this.searchSubject.next(event.target.value);
